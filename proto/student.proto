@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package student;
+
+import "google/protobuf/empty.proto";
+
+message Student {
+	string name = 1;
+	string email = 2;
+	string student_id = 3;
+}
+
+message GetStudentRequest {
+    string student_id = 1;
+}
+
+message UpdateStudentRequest {
+	string student_id = 1;
+	string key = 2;
+	string new_value = 3;
+}
+
+message DeleteStudentRequest {
+    string student_id = 1;
+}
+
+message ListStudentsResponse {
+	repeated Student students = 1;
+}
+
+message ListStudentsRequest {
+
+
+}
+
+service StudentService {
+	rpc CreateStudent (Student) returns (Student) {}
+	rpc GetStudent (GetStudentRequest) returns (Student) {}
+	rpc UpdateStudent (UpdateStudentRequest) returns (Student) {}
+	rpc DeleteStudent (DeleteStudentRequest) returns (google.protobuf.Empty) {}
+	rpc ListStudent (ListStudentsRequest) returns (ListStudentsResponse) {}
+}
+
